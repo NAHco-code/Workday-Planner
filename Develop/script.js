@@ -4,7 +4,7 @@ const currentDateTimeEL = $('#current_date_time'); //link to html
 
 //define function to live update current date and time
 var update = function () {
-    dateTime = moment().format('dddd, MMMM Do YYYY [at] h:mm a [.]');
+    dateTime = moment().format('dddd, MMMM Do YYYY [at] h:mm:ss a [.]');
     currentDateTimeEL.text(dateTime);
 }
 
@@ -13,11 +13,11 @@ $(document).ready(function () {
     setInterval(update, 1000)
 });    
 
-var tableRows = $('#row');
-var tableBody = $('#container container-fluid');
-$(function ()){
-    $('#')
-}
+// var tableRows = $('#row');
+// var tableBody = $('#container container-fluid');
+// $(function ()){
+//     $('#')
+// }
 //var main area
 
 //var hours object //array

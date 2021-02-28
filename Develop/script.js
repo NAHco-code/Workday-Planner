@@ -17,24 +17,24 @@ const savedTasksObj = [{
     tasks: ['']    
     },
     {
-    time: 1,
+    time: 13,
     tasks: ['']    
     },
     {
-    time: 2,
+    time: 14,
     tasks: ['']    
     },
     {
-    time: 3,
+    time: 15,
     tasks: ['']    
     },
     {
-    time: 4,
+    time: 16,
     tasks: ['']    
     },
     {
-    time: 5,
-    tasks: ['']    
+    time: 17,
+    tasks: ['']
     }
 ];
 
@@ -43,7 +43,7 @@ var dateTime; //empty date variable
 
 //define function to live update current date and time
 var update = function () {
-    dateTime = moment().format('dddd, MMMM Do YYYY [at] h:mm:ss a [.]');
+    dateTime = moment().format('dddd, MMMM Do YYYY [at] h:mm:ss a[.]');
     currentDateTimeEL.text(dateTime);
 }
 
@@ -52,32 +52,10 @@ $(document).ready(function () {
     setInterval(update, 1000)
 });
 
-// const saveBtn = $('#save_btn');
-// const taskEl = $('.desription'); //append task items to DOM elements
-
-// const savedItem = '';
-    
-// function renderSaved(index) {
-//     let taskList = savedTasksObj[index].time + savedTasksObj[index].tasks;
-    
-//     let taskText = 
-//         '<textarea class="description col-8">' + savedTasksObj[index].tasks + '</textarea>';
-//     taskEl.innerHTML = taskText;
-// };
-
-
-
-//save to-do-items to local storage
-// saveBtn.addEventListener('click', storeTask()){
-    
-//     localStorage.setItem('task[]', 'taskText.stringify');
-// }
-
-
 var tableRows = $('.row');
 tableRows.each(function (index) {
     console.log($(this).children('textarea'))
-    let rowHour = $(this).attr('id').split('_')[1];
+    let rowHour = $(this).attr('id').split('_')[1]; //select the id of timeblock div index[1] to get labled time
     if (moment().hours() < rowHour) {
         $(this).children('textarea').addClass('future')
     }
@@ -88,35 +66,26 @@ tableRows.each(function (index) {
         $(this).children('textarea').addClass('past')
     }
 });
-//var main area
-
-// var hours object //array
-// var browser storage
-
-// display date moments.js
-
-// display time blocks
-// for loop to appends divs for time blocks
-
-// function color code time block to reflect time of day
-//     **first comparison doesn't work**
-//     let
-//     let
-//     for loop
-//     if else
-
-// event listener to save input
-    
-//     push appends item to end of array
-//     append saved items in same div to 
 
 
-// write local storage items to correct row
-// if statement
-//     for loop
-//         let
-//         console.log
-        
+//append task items to DOM elements
+const taskEl = $('.desription'); 
+var taskListEl = $('.time-block');
 
-//         when they click on the button, you want to save the value that's in the box, put it into an array (that you stringify ) when you put it back onto the page, you have to parse it. use get item
-    
+taskListEl.each(function renderSaved(index) {
+    let taskList = savedTasksObj[index].time;
+    let taskText = savedTasksObj[index].tasks;
+    taskListEl.innerHTML = taskList;
+    taskEl.innerHTML = taskText;
+});
+
+// console.log(taskListEl);
+
+// save to-do-items to local storage
+const saveBtn = $('button');
+// saveBtn.on('click', function(taskListEl) {
+//     Storage.prototype.set
+// });
+
+// // retrieve from local storage
+// var retrievedTasks = localStorage.getItem('savedTaskObj', JSON.parse('taskText'));

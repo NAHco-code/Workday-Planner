@@ -1,6 +1,6 @@
 // declare global //
 // retrieve from local storage on page load
-let savedTasksArray = JSON.parse(localStorage.getItem('savedTaskArray'));
+let savedTasksArray = JSON.parse(localStorage.getItem('savedTasksArray'));
 //if there are no saved tasks, load default empty array
 if (!savedTasksArray) {
 

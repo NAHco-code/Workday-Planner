@@ -18,8 +18,6 @@ When rendering previously saved tasks, no space or punctuation appears between t
 
 ![screenshot](saved_items.png)
 
-![screenshot]()
-
 ### Links
 
 [DeployedApp] (<https://nahco-code.github.io/WorkDayPlanner/>)

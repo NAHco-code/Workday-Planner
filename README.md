@@ -10,11 +10,13 @@ Current day and live time displayed at top of application, as well as time block
 
 ## Bug Fix Road Map
 
+When rendering previously saved tasks, no space or punctuation appears between task items.
+
 ### Visuals
 
-![screenshot]()
+![screenshot](default_pageload.png)
 
-![screenshot]()
+![screenshot](saved_items.png)
 
 ![screenshot]()
 

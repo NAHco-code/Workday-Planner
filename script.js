@@ -98,7 +98,7 @@ saveBtn.on('click', function (taskListEl) {
                 taskObj.tasks.push(inputText);
             }
         })
-        localStorage.setItem('savedTaskObj', JSON.stringify(savedTasksArray))
+        localStorage.setItem('savedTasksArray', JSON.stringify(savedTasksArray))
     }    
 });
 

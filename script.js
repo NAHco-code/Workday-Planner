@@ -44,20 +44,19 @@ if (!savedTasksArray) {
         tasks: ['']
     }
     ];
-}   
+}
 
 //*** SET LIVE DATE AND TIME TO PAGE ***//
 
 //link dateTime to DOM element
 const currentDateTimeEL = $('#current_date_time');
-var dateTime; //empty date variable
+let dateTime; //empty date variable
 
 //define function to live update current date and time
-var update = function () {
+const update = function () {
     dateTime = moment().format('dddd, MMMM Do YYYY [at] h:mm:ss a[.]');
     currentDateTimeEL.text(dateTime); //render dateTime to page
 };
-
 //call live dateTime update function
 $(document).ready(function () {
     update();
@@ -65,12 +64,12 @@ $(document).ready(function () {
 });
 
 //select each timeblock container(tableRows) and traverse through DOM tree to select textarea, as well as labeled time of each timeblock
-var tableRows = $('.row');
+const tableRows = $('.row');
 tableRows.each(function (index) {
     console.log($(this).children('textarea'))
-    var taskEl = $(this).children('textarea')
+    const taskEl = $(this).children('textarea')
     let rowHour = $(this).attr('id').split('_')[1]; //split the id(index 1/position 2) of timeblock div to select the labled time
-
+    console.log($(this).attr('id'));
     //if statement, comparing actual time, to labeled time(on time blocks), to determine whether each timebkock is in the past, present, or future, at any given point
     if (moment().hours() < rowHour) {
         taskEl.addClass('future')
@@ -81,41 +80,34 @@ tableRows.each(function (index) {
     else {
         taskEl.addClass('past')
     }
-    //create variables to make the time and tasks object keys(in savedTasksArray) selectable  //link both object keys(time + tasks) from savedTasksArray, to html timeblocks 
+    //create variables to make the time and tasks object keys(in savedTasksArray) selectable  //link both object keys(time + tasks) from savedTasksArray, to html timeblocks
     let taskList = savedTasksArray[index].time;
     let taskText = savedTasksArray[index].tasks;
+    //set time and tasks object keys to render in html
     taskEl.html(taskText);
-    console.log(rowHour, taskList);
 });
 
 //*** SAVE TASK ITEMS TO LOCAL STORAGE ***//
 
-//create variables to make ‘button’ and ‘textarea’(html elements) selectable
+//create variables to make the save button selectable
 const saveBtn = $('button');
-const userInputEl = $('textarea');
 
-//define jquery on’click’ function + pass taskListEl through the function
-saveBtn.on('click', function (taskListEl) {
+saveBtn.on('click', function () {
     console.log($(this));
     //traverse through taskList variable(this), sibling DOM tree element, to select entered value of ‘textarea’ element //traversing keeps things in current context
     let inputText = $(this).siblings('textarea').val();
-    console.log(inputText);
-    console.log($(this).parent());
     //traverse through taskList variable (this), up DOM tree(parent), to select labeled hour of timeblocks
     let rowHour = $(this).parent().attr('id').split('_')[1];
-    
     //if statement to evaluate - if there is a value in a ‘textarea’ element, to loop through the savedTasksArray and push the value onto the array if the labeled time on timeblock matches the time value in the savedTasksArray
     if (inputText) {
-
-        savedTasksArray.forEach(function (taskObj, index) {
-    
+        savedTasksArray.forEach(function (taskObj) {
             if (taskObj.time == rowHour) {
                 taskObj.tasks.push(inputText);
             }
         })
         //set stringified savedTasksArray(with pushed ‘textarea’ value) into local storage
         localStorage.setItem('savedTasksArray', JSON.stringify(savedTasksArray))
-    }    
+    }
 });
 
 // retrieve parsed array from local storage on page load //written at top
